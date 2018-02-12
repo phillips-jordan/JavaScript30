@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>JS Drum Kit</title>
+  <title>SWEET CHILD OF MINER</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -54,20 +54,35 @@
   <audio data-key="71" src="sounds/D2.wav"></audio>
   <audio data-key="72" src="sounds/Fs.wav"></audio>
   <audio data-key="74" src="sounds/G2.wav"></audio>
+  <audio data-scom="999" src="sounds/SCOM.wav"></audio>
   <!-- <audio data-key="75" src="sounds/.wav"></audio> -->
   <!-- <audio data-key="76" src="sounds/tink.wav"></audio> -->
 
 <script>
-
+var arr = []
 document.addEventListener("keydown", handleKeyPress)
 function handleKeyPress(e){
 var audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+if (!audio){return}
+arr.push(e.keyCode);
+console.log(arr)
 audio.currentTime = 0;
 audio.play();
 var element = document.querySelector(`div[data-key="${e.keyCode}"]`) 
 element.classList.add('playing')
 document.addEventListener('keyup', function(){element.classList.remove('playing')})
+
+
+if (arr.join("") == [65, 71, 70, 68, 74, 70, 72, 70].join("")){
+  setTimeout(function(){
+    document.querySelector(`audio[data-scom="999"]`).play()
+    alert ("Haha nice! Sweet child of mine really fucking rocks!\nReminds me of childhood memories!")
+    }, 600)
+  } 
+
+
 }
+
 
 </script>
 
